@@ -85,7 +85,7 @@ extension WhatsNewView: View {
                         self.layout.scrollViewBottomContentInset
                     )
             }
-            #if os(iOS)
+            #if os(iOS) && !targetEnvironment(macCatalyst)
             .alwaysBounceVertical(false)
             #endif
             // Footer
@@ -93,7 +93,7 @@ extension WhatsNewView: View {
                 Spacer()
                 self.footer
                     .modifier(FooterPadding())
-                    #if os(iOS)
+                    #if os(iOS) && !targetEnvironment(macCatalyst)
                     .background(
                         UIVisualEffectView
                             .Representable()
