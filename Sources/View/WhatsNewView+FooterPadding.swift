@@ -30,7 +30,16 @@ extension WhatsNewView.FooterPadding: ViewModifier {
     func body(
         content: Content
     ) -> some View {
-        #if os(macOS)
+        #if targetEnvironment(macCatalyst)
+        content.padding(
+            .init(
+                top: 0,
+                leading: 30,
+                bottom: 30,
+                trailing: 30
+            )
+        )
+        #elseif os(macOS)
         content.padding(.bottom, 30)
         #else
         if self.horizontalSizeClass == .regular {

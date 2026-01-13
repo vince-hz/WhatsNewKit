@@ -115,6 +115,30 @@ private extension WhatsNew.Example {
                         ),
                         title: "Location Suggestions",
                         subtitle: "Calendar suggests locations based on your past events and significant locations."
+                    ),
+                    .init(
+                        image: .init(
+                            systemName: "envelope",
+                            foregroundColor: .red
+                        ),
+                        title: "Found Events",
+                        subtitle: "Siri suggests events found in Mail, Messages, and Safari, so you can add them easily, such as flight reservations and hotel bookings."
+                    ),
+                    .init(
+                        image: .init(
+                            systemName: "clock",
+                            foregroundColor: .red
+                        ),
+                        title: "Time to Leave",
+                        subtitle: "Calendar uses Apple Maps to look up locations, traffic conditions, and transit options to tell you when it's time to leave."
+                    ),
+                    .init(
+                        image: .init(
+                            systemName: "location",
+                            foregroundColor: .red
+                        ),
+                        title: "Location Suggestions",
+                        subtitle: "Calendar suggests locations based on your past events and significant locations."
                     )
                 ],
                 primaryAction: .init(

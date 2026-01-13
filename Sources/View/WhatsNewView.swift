@@ -4,7 +4,6 @@ import SwiftUI
 
 /// A WhatsNewView
 public struct WhatsNewView {
-    
     // MARK: Properties
     
     /// The WhatsNew object
@@ -23,7 +22,7 @@ public struct WhatsNewView {
     /// The PresentationMode
     @Environment(\.presentationMode)
     private var presentationMode
-    
+
     // MARK: Initializer
     
     /// Creates a new instance of `WhatsNewView`
@@ -40,13 +39,11 @@ public struct WhatsNewView {
         self.whatsNewVersionStore = versionStore
         self.layout = layout
     }
-    
 }
 
 // MARK: - View
 
 extension WhatsNewView: View {
-    
     /// The content and behavior of the view.
     public var body: some View {
         ZStack {
@@ -93,14 +90,19 @@ extension WhatsNewView: View {
                 Spacer()
                 self.footer
                     .modifier(FooterPadding())
-                    #if os(iOS) && !targetEnvironment(macCatalyst)
+                #if os(iOS) && targetEnvironment(macCatalyst)
+                    .background(
+                        Color(UIColor.systemBackground)
+                            .padding(self.layout.footerVisualEffectViewPadding))
+                    .shadow(color: Color.black.opacity(0.12), radius: 8, x: 0, y: -2)
+                #elseif os(iOS)
                     .background(
                         UIVisualEffectView
                             .Representable()
                             .edgesIgnoringSafeArea(.horizontal)
                             .padding(self.layout.footerVisualEffectViewPadding)
                     )
-                    #endif
+                #endif
             }
             .edgesIgnoringSafeArea(.bottom)
         }
@@ -115,13 +117,11 @@ extension WhatsNewView: View {
             )
         }
     }
-    
 }
 
 // MARK: - Title
 
 private extension WhatsNewView {
-    
     /// The Title View
     var title: some View {
         Text(
@@ -131,13 +131,11 @@ private extension WhatsNewView {
         .multilineTextAlignment(.center)
         .fixedSize(horizontal: false, vertical: true)
     }
-    
 }
 
 // MARK: - Feature
 
 private extension WhatsNewView {
-    
     /// The Feature View
     /// - Parameter feature: A WhatsNew Feature
     func feature(
@@ -171,13 +169,11 @@ private extension WhatsNewView {
             .multilineTextAlignment(.leading)
         }.accessibilityElement(children: .combine)
     }
-    
 }
 
 // MARK: - Footer
 
 private extension WhatsNewView {
-    
     /// The Footer View
     var footer: some View {
         VStack(
@@ -238,5 +234,4 @@ private extension WhatsNewView {
             #endif
         }
     }
-    
 }

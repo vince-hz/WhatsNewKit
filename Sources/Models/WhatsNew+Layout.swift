@@ -3,10 +3,8 @@ import SwiftUI
 // MARK: - WhatsNew+Layout
 
 public extension WhatsNew {
-    
     /// The WhatsNew Layout
     struct Layout {
-        
         // MARK: Properties
 
         /// A Boolean value if the scroll view indicator should be visible
@@ -77,7 +75,13 @@ public extension WhatsNew {
             featureVerticalSpacing: CGFloat = 2,
             footerActionSpacing: CGFloat = 15,
             footerPrimaryActionButtonCornerRadius: CGFloat = 14,
-            footerVisualEffectViewPadding: EdgeInsets = .init(top: -10, leading: 0, bottom: 0, trailing: 0)
+            footerVisualEffectViewPadding: EdgeInsets = {
+                #if targetEnvironment(macCatalyst)
+                return .init(top: -30, leading: 0, bottom: 0, trailing: 0)
+                #else
+                return .init(top: -10, leading: 0, bottom: 0, trailing: 0)
+                #endif
+            }()
         ) {
             self.showsScrollViewIndicators = showsScrollViewIndicators
             self.scrollViewBottomContentInset = scrollViewBottomContentInset
@@ -93,27 +97,21 @@ public extension WhatsNew {
             self.footerPrimaryActionButtonCornerRadius = footerPrimaryActionButtonCornerRadius
             self.footerVisualEffectViewPadding = footerVisualEffectViewPadding
         }
-        
     }
-    
 }
 
 // MARK: - Layout+default
 
 public extension WhatsNew.Layout {
-    
     /// The mutable default Layout
     static var `default` = Self()
-    
 }
 
 // MARK: - Layout+reset
 
 public extension WhatsNew.Layout {
-    
     /// Reset the Layout to default values
     mutating func reset() {
         self = .init()
     }
-    
 }
